@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good News Orange County Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f1f33;
+    --deep:#16324f;
+    --blue:#2c6e9b;
+    --sky:#6fb1d4;
+    --mist:#dce9f1;
+    --cloud:#f4f8fb;
+    --paper:#fbfdfe;
+    --warm:#e8a35a;
+    --line:rgba(22,50,79,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Outfit',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    background:rgba(251,253,254,.78);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:.4s;
+  }
+  nav.scrolled{border-bottom:1px solid var(--line);padding:12px 32px;box-shadow:0 6px 30px -18px rgba(15,31,51,.3)}
+  .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--deep)}
+  .brand .mk{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--sky));display:grid;place-items:center;color:#fff;font-size:1rem;box-shadow:0 6px 16px -6px rgba(44,110,155,.7)}
+  .links{display:flex;gap:30px;align-items:center}
+  .links a{font-size:.93rem;color:var(--deep);opacity:.78;transition:.25s;position:relative}
+  .links a:hover{opacity:1}
+  .links a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--warm);transition:.3s}
+  .links a:hover::after{width:100%}
+  .cta{background:var(--deep);color:#fff !important;padding:10px 20px;border-radius:40px;font-size:.9rem;opacity:1 !important;transition:.3s}
+  .cta:hover{background:var(--blue);transform:translateY(-2px)}
+  .cta::after{display:none}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:24px;height:2px;background:var(--deep);transition:.3s}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:
+    radial-gradient(circle at 75% 25%,rgba(111,177,212,.35),transparent 55%),
+    radial-gradient(circle at 10% 90%,rgba(44,110,155,.25),transparent 50%),
+    linear-gradient(160deg,#f4f8fb 0%,#dce9f1 100%);}
+  .hero-bg::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(22,50,79,.06) 1px,transparent 1px);background-size:26px 26px;opacity:.6}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;padding-top:90px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:500;margin-bottom:22px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--warm)}
+  .hero h1{font-size:clamp(2.7rem,6vw,4.6rem);color:var(--ink);margin-bottom:22px}
+  .hero h1 em{font-style:italic;color:var(--blue)}
+  .hero p{font-size:1.12rem;color:var(--deep);opacity:.82;max-width:480px;margin-bottom:34px}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-primary{background:var(--deep);color:#fff;padding:14px 30px;border-radius:44px;font-size:1rem;font-weight:500;transition:.3s;box-shadow:0 14px 30px -12px rgba(15,31,51,.55)}
+  .btn-primary:hover{background:var(--blue);transform:translateY(-3px)}
+  .btn-ghost{padding:14px 28px;border-radius:44px;border:1.5px solid var(--line);font-weight:500;transition:.3s;display:inline-flex;align-items:center;gap:8px}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+  .hero-visual{position:relative;height:520px}
+  .hero-card{position:absolute;border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -25px rgba(15,31,51,.5)}
+  .hero-card img{width:100%;height:100%;object-fit:cover;display:block}
+  .hc1{top:0;right:0;width:74%;height:64%;z-index:2}
+  .hc2{bottom:0;left:0;width:56%;height:52%;z-index:3;border:6px solid var(--paper)}
+  .badge{position:absolute;bottom:30px;right:-10px;z-index:4;background:#fff;border-radius:18px;padding:16px 20px;box-shadow:0 18px 40px -16px rgba(15,31,51,.4);display:flex;align-items:center;gap:13px}
+  .badge .ic{width:42px;height:42px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--blue);font-size:1.3rem}
+  .badge b{font-family:'Fraunces',serif;font-size:1.05rem;color:var(--ink);display:block}
+  .badge span{font-size:.8rem;color:var(--deep);opacity:.7}
+
+  /* SECTIONS */
+  section{padding:108px 0}
+  .sec-head{max-width:620px;margin-bottom:56px}
+  .sec-head .eyebrow{margin-bottom:14px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink)}
+  .sec-head p{font-size:1.08rem;color:var(--deep);opacity:.78;margin-top:16px}
+
+  /* WELCOME strip */
+  .welcome{background:var(--cloud);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .welcome .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .welcome-img{border-radius:22px;overflow:hidden;height:400px;box-shadow:0 24px 50px -24px rgba(15,31,51,.4)}
+  .welcome-img img{width:100%;height:100%;object-fit:cover}
+  .welcome h2{font-size:clamp(1.9rem,3.5vw,2.7rem);margin-bottom:18px}
+  .welcome p{color:var(--deep);opacity:.82;margin-bottom:14px}
+
+  /* SERVICE TIMES */
+  .times-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .time-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px 30px;transition:.35s;position:relative;overflow:hidden}
+  .time-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--sky))}
+  .time-card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -24px rgba(15,31,51,.4)}
+  .time-card .day{font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);font-weight:600;margin-bottom:10px}
+  .time-card h3{font-size:1.45rem;margin-bottom:8px;color:var(--ink)}
+  .time-card .hr{font-family:'Fraunces',serif;font-size:1.9rem;color:var(--deep);margin-bottom:6px}
+  .time-card p{font-size:.93rem;color:var(--deep);opacity:.72}
+  .loc-bar{margin-top:28px;background:var(--deep);color:#fff;border-radius:20px;padding:30px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .loc-bar .li{display:flex;align-items:center;gap:14px}
+  .loc-bar .ic{width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:1.3rem}
+  .loc-bar b{font-family:'Fraunces',serif;font-size:1.1rem;display:block}
+  .loc-bar span{opacity:.78;font-size:.92rem}
+  .loc-bar a.btn-primary{background:var(--warm);box-shadow:none}
+  .loc-bar a.btn-primary:hover{background:#d4914a}
+
+  /* SERMONS */
+  .sermons{background:var(--cloud);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .ser-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);transition:.35s;cursor:pointer}
+  .ser-card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -24px rgba(15,31,51,.4)}
+  .ser-thumb{position:relative;height:200px;overflow:hidden}
+  .ser-thumb img{width:100%;height:100%;object-fit:cover;transition:.5s}
+  .ser-card:hover .ser-thumb img{transform:scale(1.06)}
+  .play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(15,31,51,.25)}
+  .play .circ{width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;color:var(--blue);font-size:1.3rem;transition:.3s;padding-left:4px}
+  .ser-card:hover .play .circ{transform:scale(1.1);background:#fff}
+  .ser-body{padding:22px 24px}
+  .ser-body .tag{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);font-weight:600}
+  .ser-body h3{font-size:1.2rem;margin:9px 0 6px;color:var(--ink)}
+  .ser-body p{font-size:.9rem;color:var(--deep);opacity:.7}
+
+  /* EVENTS */
+  .ev-list{display:flex;flex-direction:column;gap:16px}
+  .ev{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px 30px;transition:.3s}
+  .ev:hover{border-color:var(--sky);transform:translateX(6px);box-shadow:0 18px 40px -22px rgba(15,31,51,.35)}
+  .ev-date{text-align:center;background:var(--mist);border-radius:14px;padding:14px 18px;min-width:78px}
+  .ev-date .m{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);font-weight:600}
+  .ev-date .d{font-family:'Fraunces',serif;font-size:1.9rem;color:var(--deep);line-height:1}
+  .ev-info h3{font-size:1.25rem;color:var(--ink);margin-bottom:5px}
+  .ev-info p{font-size:.92rem;color:var(--deep);opacity:.72;display:flex;gap:16px;flex-wrap:wrap}
+  .ev-info p span{display:inline-flex;align-items:center;gap:6px}
+  .ev-arrow{font-size:1.4rem;color:var(--sky);transition:.3s}
+  .ev:hover .ev-arrow{color:var(--blue);transform:translateX(4px)}
+
+  /* CONTACT */
+  .contact{background:var(--deep);color:#fff;position:relative;overflow:hidden}
+  .contact::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(111,177,212,.22),transparent 55%)}
+  .contact .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .contact .eyebrow{color:var(--sky)}
+  .contact h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:18px}
+  .contact .lead{opacity:.8;font-size:1.08rem;margin-bottom:34px;max-width:420px}
+  .cinfo{display:flex;flex-direction:column;gap:22px}
+  .cinfo .row{display:flex;align-items:center;gap:16px}
+  .cinfo .ic{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:1.25rem;flex-shrink:0}
+  .cinfo b{font-family:'Fraunces',serif;font-size:1.05rem;display:block}
+  .cinfo span{opacity:.76;font-size:.93rem}
+  .cform{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:22px;padding:36px}
+  .cform label{display:block;font-size:.85rem;margin-bottom:7px;opacity:.85}
+  .cform input,.cform textarea{width:100%;padding:13px 16px;border-radius:11px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;font-family:inherit;font-size:.95rem;margin-bottom:18px;transition:.3s}
+  .cform input::placeholder,.cform textarea::placeholder{color:rgba(255,255,255,.45)}
+  .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--sky);background:rgba(255,255,255,.12)}
+  .cform textarea{resize:vertical;min-height:110px}
+  .cform button{width:100%;background:var(--warm);color:var(--ink);border:none;padding:15px;border-radius:11px;font-family:inherit;font-size:1rem;font-weight:600;cursor:pointer;transition:.3s}
+  .cform button:hover{background:#fff;transform:translateY(-2px)}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#fff;padding:60px 0 30px}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .foot-brand{max-width:320px}
+  .foot-brand .brand{color:#fff;margin-bottom:14px}
+  .foot-brand p{opacity:.7;font-size:.93rem}
+  .foot-social{display:flex;gap:12px;margin-top:18px}
+  .foot-social a{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.1);display:grid;place-items:center;transition:.3s}
+  .foot-social a:hover{background:var(--blue);transform:translateY(-3px)}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap}
+  .foot-col h4{font-family:'Outfit',sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;opacity:.6;margin-bottom:16px;font-weight:600}
+  .foot-col a{display:block;opacity:.78;font-size:.93rem;margin-bottom:10px;transition:.25s}
+  .foot-col a:hover{opacity:1;color:var(--sky)}
+  .foot-bot{padding-top:26px;text-align:center;opacity:.55;font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .burger{display:flex}
+    .hero .wrap{grid-template-columns:1fr;gap:40px;text-align:center}
+    .hero p{margin-left:auto;margin-right:auto}
+    .hero-btns{justify-content:center}
+    .hero-visual{height:400px;max-width:460px;margin:0 auto}
+    .welcome .wrap,.contact .wrap{grid-template-columns:1fr;gap:36px}
+    .times-grid,.ser-grid{grid-template-columns:1fr}
+    .eyebrow{justify-content:center}
+    .sec-head{margin-left:auto;margin-right:auto;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="brand"><span class="mk">✦</span> Good News OC</a>
+  <div class="links">
+    <a href="#welcome">Welcome</a>
+    <a href="#times">Service Times</a>
+    <a href="#sermons">Sermons</a>
+    <a href="#events">Events</a>
+    <a href="#contact" class="cta">Plan a Visit</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="hero-text reveal">
+      <span class="eyebrow"><span class="dot"></span> Orange County, California</span>
+      <h1>Come as you are.<br><em>Belong</em> here.</h1>
+      <p>We're a warm, welcoming family following Jesus together in the heart of Orange County. There's a place for you at our table.</p>
+      <div class="hero-btns">
+        <a href="#times" class="btn-primary">Join Us Sunday</a>
+        <a href="#welcome" class="btn-ghost">Learn More →</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card hc1"><img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=900&q=80" alt="Worship gathering"></div>
+      <div class="hero-card hc2"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=700&q=80" alt="Church community"></div>
+      <div class="badge">
+        <span class="ic">☀</span>
+        <div><b>Sundays</b><span>10:30 AM Service</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WELCOME -->
+<section class="welcome" id="welcome">
+  <div class="wrap">
+    <div class="welcome-img reveal"><img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800&q=80" alt="Community fellowship"></div>
+    <div class="welcome-text reveal">
+      <span class="eyebrow"><span class="dot"></span> Welcome Home</span>
+      <h2>A family chasing after good news together</h2>
+      <p>Good News Orange County Church exists to share the hope and love of Jesus with our city. Whether you've been walking with God for decades or you're just curious, you'll find genuine community and a place to grow.</p>
+      <p>We gather to worship, to learn, and to do life together — across every age, background, and stage of the journey. No perfect people required.</p>
+      <div class="hero-btns" style="margin-top:24px">
+        <a href="#contact" class="btn-primary">Connect With Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE TIMES -->
+<section id="times">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Gather With Us</span>
+      <h2>Service times &amp; location</h2>
+      <p>We'd love to see you. Here's when and where we meet each week.</p>
+    </div>
+    <div class="times-grid">
+      <div class="time-card reveal">
+        <div class="day">Sunday</div>
+        <h3>Worship Service</h3>
+        <div class="hr">10:30 AM</div>
+        <p>Our main weekly gathering — worship, teaching, and community for all ages.</p>
+      </div>
+      <div class="time-card reveal">
+        <div class="day">Wednesday</div>
+        <h3>Midweek Bible Study</h3>
+        <div class="hr">7:00 PM</div>
+        <p>Dig deeper into Scripture and connect in a smaller, relational setting.</p>
+      </div>
+      <div class="time-card reveal">
+        <div class="day">Friday</div>
+        <h3>Youth &amp; Young Adults</h3>
+        <div class="hr">7:30 PM</div>
+        <p>A vibrant space for the next generation to grow in faith and friendship.</p>
+      </div>
+    </div>
+    <div class="loc-bar reveal">
+      <div class="li">
+        <span class="ic">📍</span>
+        <div><b>Find Us in Orange County</b><span>123 Hope Avenue, Orange County, CA &middot; Free parking on site</span></div>
+      </div>
+      <a href="#contact" class="btn-primary">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERMONS -->
+<section class="sermons" id="sermons">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> Watch &amp; Listen</span>
+      <h2>Recent sermons &amp; media</h2>
+      <p>Missed a Sunday or want to revisit a message? Catch up anytime.</p>
+    </div>
+    <div class="ser-grid">
+      <div class="ser-card reveal">
+        <div class="ser-thumb"><img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=700&q=80" alt="Sermon thumbnail"><div class="play"><div class="circ">▶</div></div></div>
+        <div class="ser-body"><span class="tag">Series · Rooted</span><h3>Living With Hope</h3><p>Pastor's message on finding steady hope in uncertain seasons.</p></div>
+      </div>
+      <div class="ser-card reveal">
+        <div class="ser-thumb"><img src="https://images.unsplash.com/photo-1490127252417-7c393f993ee4?w=700&q=80" alt="Sermon thumbnail"><div class="play"><div class="circ">▶</div></div></div>
+        <div class="ser-body"><span class="tag">Series · Rooted</span><h3>The Heart of Worship</h3><p>What it really means to bring our whole selves before God.</p></div>
+      </div>
+      <div class="ser-card reveal">
+        <div class="ser-thumb"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80" alt="Sermon thumbnail"><div class="play"><div class="circ">▶</div></div></div>
+        <div class="ser-body"><span class="tag">Standalone</span><h3>Better Together</h3><p>Why community is at the center of the life Jesus invites us into.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="dot"></span> What's Coming Up</span>
+      <h2>Events &amp; calendar</h2>
+      <p>There's always something happening. Come be a part of it.</p>
+    </div>
+    <div class="ev-list">
+      <div class="ev reveal">
+        <div class="ev-date"><div class="m">Jun</div><div class="d">14</div></div>
+        <div class="ev-info"><h3>Community Picnic &amp; Worship Night</h3><p><span>🕕 5:00 PM</span><span>📍 City Park</span></p></div>
+        <div class="ev-arrow">→</div>
+      </div>
+      <div class="ev reveal">
+        <div class="ev-date"><div class="m">Jun</div><div class="d">21</div></div>
+        <div class="ev-info"><h3>Newcomers Lunch</h3><p><span>🕛 12:00 PM</span><span>📍 Fellowship Hall</span></p></div>
+        <div class="ev-arrow">→</div>
+      </div>
+      <div class="ev reveal">
+        <div class="ev-date"><div class="m">Jul</div><div class="d">05</div></div>
+        <div class="ev-info"><h3>Summer Baptism Sunday</h3><p><span>🕥 10:30 AM</span><span>📍 Main Auditorium</span></p></div>
+        <div class="ev-arrow">→</div>
+      </div>
+      <div class="ev reveal">
+        <div class="ev-date"><div class="m">Jul</div><div class="d">12</div></div>
+        <div class="ev-info"><h3>Family Game &amp; Movie Night</h3><p><span>🕖 7:00 PM</span><span>📍 Fellowship Hall</span></p></div>
+        <div class="ev-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-left reveal">
+      <span class="eyebrow"><span class="dot"></span> Connect</span>
+      <h2>We'd love to hear from you</h2>
+      <p class="lead">Questions, prayer requests, or just want to say hi? Reach out — a real person will get back to you.</p>
+      <div class="cinfo">
+        <div class="row"><span class="ic">📍</span><div><b>Visit Us</b><span>123 Hope Avenue, Orange County, CA</span></div></div>
+        <div class="row"><span class="ic">✉️</span><div><b>Email</b><span>hello@gnocfamily.org</span></div></div>
+        <div class="row"><span class="ic">📷</span><div><b>Instagram</b><span>@gnocfamily</span></div></div>
+      </div>
+    </div>
+    <div class="cform reveal">
+      <label>Name</label>
+      <input type="text" placeholder="Your name">
+      <label>Email</label>
+      <input type="email" placeholder="you@email.com">
+      <label>Message</label>
+      <textarea placeholder="How can we connect with you?"></textarea>
+      <button onclick="alert('Thanks! This is a demo form — connect it to your email service to receive messages.')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#" class="brand"><span class="mk">✦</span> Good News OC</a>
+        <p>A warm, welcoming church family sharing the hope of Jesus across Orange County.</p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/gnocfamily/" aria-label="Instagram">📷</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="Facebook">f</a>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h4>Visit</h4><a href="#times">Service Times</a><a href="#welcome">Welcome</a><a href="#contact">Plan a Visit</a></div>
+        <div class="foot-col"><h4>Media</h4><a href="#sermons">Sermons</a><a href="#events">Events</a><a href="#">Calendar</a></div>
+        <div class="foot-col"><h4>Connect</h4><a href="#contact">Contact</a><a href="#">Prayer</a><a href="https://www.instagram.com/gnocfamily/">Instagram</a></div>
+      </div>
+    </div>
+    <div class="foot-bot">© 2026 Good News Orange County Church. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>30));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*0.08)+'s';io.observe(el)});
+  document.getElementById('burger').addEventListener('click',()=>document.querySelector('#times').scrollIntoView({behavior:'smooth'}));
+</script>
+</body>
+</html>
