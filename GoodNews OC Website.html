@@ -44,7 +44,8 @@
   }
   nav.scrolled{border-bottom:1px solid var(--line);padding:12px 32px;box-shadow:0 6px 30px -18px rgba(15,31,51,.3)}
   .brand{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--deep)}
-  .brand .mk{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--sky));display:grid;place-items:center;color:#fff;font-size:1rem;box-shadow:0 6px 16px -6px rgba(44,110,155,.7)}
+  .brand .mk{width:34px;height:34px;border-radius:9px;overflow:hidden;display:grid;place-items:center}
+  .brand .mk img{width:100%;height:100%;object-fit:cover;border-radius:9px}
   .links{display:flex;gap:30px;align-items:center}
   .links a{font-size:.93rem;color:var(--deep);opacity:.78;transition:.25s;position:relative}
   .links a:hover{opacity:1}
@@ -201,7 +202,7 @@
 <body>
 
 <nav id="nav">
-  <a href="#" class="brand"><span class="mk">✦</span> Good News OC</a>
+  <a href="#" class="brand"><span class="mk"><img src="Church Icon.png" alt="Good News OC Logo"></span> Good News OC</a>
   <div class="links">
     <a href="#welcome">Welcome</a>
     <a href="#times">Service Times</a>
@@ -230,7 +231,7 @@
       <div class="hero-card hc2"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=700&q=80" alt="Church community"></div>
       <div class="badge">
         <span class="ic">☀</span>
-        <div><b>Sundays</b><span>10:30 AM Service</span></div>
+        <div><b>Sundays</b><span>10:00 AM Service</span></div>
       </div>
     </div>
   </div>
@@ -264,8 +265,8 @@
       <div class="time-card reveal">
         <div class="day">Sunday</div>
         <h3>Worship Service</h3>
-        <div class="hr">10:30 AM</div>
-        <p>Our main weekly gathering — worship, teaching, and community for all ages.</p>
+        <div class="hr">10:00 AM</div>
+        <p>Our main weekly gathering — worship, teaching, and community for all ages. Stay afterwards for lunch!</p>
       </div>
       <div class="time-card reveal">
         <div class="day">Wednesday</div>
@@ -283,7 +284,7 @@
     <div class="loc-bar reveal">
       <div class="li">
         <span class="ic">📍</span>
-        <div><b>Find Us in Orange County</b><span>123 Hope Avenue, Orange County, CA &middot; Free parking on site</span></div>
+        <div><b>Find Us in Orange County</b><span>201 E Cypress St, Anaheim, CA 92805 &middot; Free parking on site</span></div>
       </div>
       <a href="#contact" class="btn-primary">Get Directions</a>
     </div>
@@ -336,7 +337,7 @@
       </div>
       <div class="ev reveal">
         <div class="ev-date"><div class="m">Jul</div><div class="d">05</div></div>
-        <div class="ev-info"><h3>Summer Baptism Sunday</h3><p><span>🕥 10:30 AM</span><span>📍 Main Auditorium</span></p></div>
+        <div class="ev-info"><h3>Summer Baptism Sunday</h3><p><span>🕥 10:00 AM</span><span>📍 Main Auditorium</span></p></div>
         <div class="ev-arrow">→</div>
       </div>
       <div class="ev reveal">
@@ -356,7 +357,7 @@
       <h2>We'd love to hear from you</h2>
       <p class="lead">Questions, prayer requests, or just want to say hi? Reach out — a real person will get back to you.</p>
       <div class="cinfo">
-        <div class="row"><span class="ic">📍</span><div><b>Visit Us</b><span>123 Hope Avenue, Orange County, CA</span></div></div>
+        <div class="row"><span class="ic">📍</span><div><b>Visit Us</b><span>201 E Cypress St, Anaheim, CA 92805</span></div></div>
         <div class="row"><span class="ic">✉️</span><div><b>Email</b><span>hello@gnocfamily.org</span></div></div>
         <div class="row"><span class="ic">📷</span><div><b>Instagram</b><span>@gnocfamily</span></div></div>
       </div>
@@ -378,7 +379,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a href="#" class="brand"><span class="mk">✦</span> Good News OC</a>
+        <a href="#" class="brand"><span class="mk"><img src="Church Icon.png" alt="Good News OC Logo"></span> Good News OC</a>
         <p>A warm, welcoming church family sharing the hope of Jesus across Orange County.</p>
         <div class="foot-social">
           <a href="https://www.instagram.com/gnocfamily/" aria-label="Instagram">📷</a>
